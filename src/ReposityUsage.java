@@ -9,6 +9,5 @@ public class ReposityUsage {
         Department administration = new Department();
         administration.setName("AD");
         pcRepository.create(administration);
-
     }
 }

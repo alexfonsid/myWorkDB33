@@ -1,27 +1,45 @@
+import model.Department;
+import model.PC;
+import reposity.DepartmentRepository;
+import reposity.PCRepository;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         String filePC = "D:/Java/sqlData/filePC.csv";
         String fileDepartment = "D:/Java/sqlData/fileDepartment.csv";
         String fileCabinet = "D:/Java/sqlData/fileCabinet.csv";
         String fileMonitor = "D:/Java/sqlData/fileMonitor.csv";
 
-        ArrayList<String[]> dataPC = DataFromFile(filePC);
+        ArrayList<String[]> dataPC = dataFromFile(filePC);
+        ArrayList<String[]> dataDepartment = dataFromFile(fileDepartment);
 
-        for (String[] currWord : dataPC) {
+
+        PC pc = new PC();
+        PCRepository pcRepository = new PCRepository();
+        for (String[] currWord : dataDepartment) {
             for (String thisWord : currWord) {
-                System.out.println(thisWord);
+                administration.setName(thisWord);
+                pcRepository.create(administration);
+            }
+        }
+
+        Department department = new Department();
+        DepartmentRepository departmentRepository = new DepartmentRepository();
+        for (String[] currWord : dataDepartment) {
+            for (String thisWord : currWord) {
+                department.setName(thisWord);
+                departmentRepository.create(department);
             }
         }
     }
 
-    public static ArrayList<String[]> DataFromFile(String wayOfFile) throws IOException {
-
+    public static ArrayList<String[]> dataFromFile(String wayOfFile) throws IOException {
         FileInputStream filePC = new FileInputStream(wayOfFile);
         int fileLength = filePC.available();
 
