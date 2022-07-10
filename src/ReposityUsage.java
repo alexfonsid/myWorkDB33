@@ -10,6 +10,5 @@ public class ReposityUsage {
         administration.setName("AD");
         pcRepository.create(administration);
 
-
     }
 }
